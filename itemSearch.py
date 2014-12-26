@@ -43,15 +43,16 @@ def getData():
     r = requests.get(base, params=payload)
     r_data = r.json()
 
-    min_sell = r_data[0]['sell']['min']
-    max_buy = r_data[0]['buy']['max']
-    gross_margin = min_sell - max_buy
-    sales_tax = min_sell * 0.009
-    brokers_fee = max_buy * 0.0059
-    taxes = sales_tax + brokers_fee
-    net_margin = gross_margin - taxes
-    margin_perc = (net_margin / min_sell)
+    min_sell = r_data[0]['sell']['min']     # gets minimum sell order data
+    max_buy = r_data[0]['buy']['max']       # gets maximum buy order data
+    gross_margin = min_sell - max_buy       # subtract buy and sell for profit (tax not included)
+    sales_tax = min_sell * 0.009            # tax is based on Product X skills in Dodixie market
+    brokers_fee = max_buy * 0.0059          # see above
+    taxes = sales_tax + brokers_fee         # combines sales tax and broker's fee for total tax
+    net_margin = gross_margin - taxes       # subtracts the tax from original profit
+    margin_perc = (net_margin / min_sell)   # calculates "worthiness"
 
+    # prints the relevant information
     print
     print r.url
     print "Tax: ${:,.2f}".format(taxes)
@@ -66,7 +67,7 @@ def getData():
 
     if margin_perc >= .07:
         print "BUY THIS SHIT!!!"
-    elif .03 <= margin_perc <= .069:
+    elif .03 <= margin_perc <= .069:  # the market can swing either way, but this is generally an insignificant return
         print "Little risk, little reward."
     else:
         print "Don't bother."
