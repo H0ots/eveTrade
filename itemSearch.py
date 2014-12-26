@@ -72,5 +72,3 @@ def getData():
         print "Don't bother."
 
 getData()
-
-print "gitHub test."
