@@ -53,23 +53,25 @@ def getData():
     margin_perc = (net_margin / min_sell)   # calculates "worthiness"
 
     # prints the relevant information
-    print
     print r.url
-    print "Tax: ${:,.2f}".format(taxes)
-    print
+    print "Tax: ${:,.2f} \n".format(taxes)
     print "Minimum Sell order: ${:,.2f}".format(min_sell)
     print "Maximum Buy order: ${:,.2f}".format(max_buy)
     print "Gross Margin: ${:,.2f}".format(gross_margin)
     print "Total Profit (after taxes): ${:,.2f}".format(net_margin)
-    print "Margin Percentage: {:.2%}".format(margin_perc)
-    print
+    print "Margin Percentage: {:.2%} \n".format(margin_perc)
     print "Summary:"
 
-    if margin_perc >= .07:
+    if margin_perc >= .15:
         print "BUY THIS SHIT!!!"
+    elif .07 <= margin_perc <= .149:
+        print "Not a bad investment"
     elif .03 <= margin_perc <= .069:  # the market can swing either way, but this is generally an insignificant return
         print "Little risk, little reward."
     else:
         print "Don't bother."
+    print "\n=======================================\n"
 
-getData()
+x = 0
+while x == 0:
+    getData()
