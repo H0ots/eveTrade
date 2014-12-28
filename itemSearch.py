@@ -4,12 +4,12 @@ import requests
 
 # gets the item name from the user
 def getItem():
-    item = raw_input("Enter an item name.")
+    item = raw_input("Enter an item name: ")
     return item
 
 # gets the system name from the user
 def getSystem():
-    market = raw_input("Enter trade system.")
+    market = raw_input("Enter trade system: ")
     return market
 
 # opens the typeids csv and finds the item id number
@@ -20,8 +20,8 @@ def openItemCSV():
 
     for row in data:
         if itemID == row[1]:
-            itemID = row[2]
-            return itemID
+            newitemID = row[2]
+            return newitemID
     file.close()
 
 # opens the solarids csv and finds the solar system id number
@@ -32,8 +32,8 @@ def openSolarCSV():
 
     for row in data:
         if solarID == row[1]:
-            solarID = row[0]
-            return solarID
+            newsolarID = row[0]
+            return newsolarID
     file.close()
 
 # generates the API url used to gather our json data
@@ -70,7 +70,7 @@ def getData():
         print "Little risk, little reward."
     else:
         print "Don't bother."
-    print "\n=======================================\n"
+    print "\n=====================================================\n"
 
 x = 0
 while x == 0:
